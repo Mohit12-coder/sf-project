@@ -1,0 +1,129 @@
+<template>
+    <div class="filter-shell">
+        <lightning-card title="Filters">
+            <div class="slds-p-around_small">
+                <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
+                    <lightning-button
+                        label="Add Filter"
+                        variant="brand"
+                        onclick={openBuilder}>
+                    </lightning-button>
+
+                    <lightning-button
+                        label="Clear All"
+                        variant="neutral"
+                        onclick={handleClearAll}>
+                    </lightning-button>
+                </div>
+
+                <div class="slds-text-title_bold slds-m-bottom_small">
+                    Matching all of these filters
+                </div>
+
+                <template if:true={hasRows}>
+                    <div class="slds-grid slds-wrap slds-gutters_small">
+                        <template for:each={displayRows} for:item="row">
+                            <div key={row.id} class="slds-col slds-size_1-of-1">
+                                <div class="filter-card">
+                                    <div class="filter-card__text">
+                                        <div class="filter-title">{row.fieldLabel}</div>
+                                        <div class="filter-subtitle">
+                                            {row.operatorLabel} {row.value}
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        class="remove-btn"
+                                        data-id={row.id}
+                                        onclick={handleRemoveClick}
+                                        title="Remove filter">
+                                        <lightning-icon
+                                            icon-name="utility:delete"
+                                            size="x-small">
+                                        </lightning-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:false={hasRows}>
+                    <div class="slds-text-color_weak">
+                        No filters applied
+                    </div>
+                </template>
+            </div>
+        </lightning-card>
+
+        <template if:true={showBuilder}>
+            <div class="builder-backdrop" onclick={closeBuilder}></div>
+
+            <section class="builder-popover" role="dialog" aria-modal="true">
+                <div class="slds-card">
+                    <div class="slds-card__header slds-p-around_small slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                        <div class="slds-text-heading_small">Apply Filter</div>
+
+                        <lightning-button-icon
+                            icon-name="utility:close"
+                            alternative-text="Close"
+                            variant="bare"
+                            onclick={closeBuilder}>
+                        </lightning-button-icon>
+                    </div>
+
+                    <div class="slds-card__body slds-p-around_small">
+                        <lightning-combobox
+                            label="Field"
+                            value={fieldName}
+                            options={fieldOptions}
+                            onchange={handleFieldChange}>
+                        </lightning-combobox>
+
+                        <lightning-combobox
+                            class="slds-m-top_small"
+                            label="Operator"
+                            value={operator}
+                            options={operatorOptions}
+                            onchange={handleOperatorChange}>
+                        </lightning-combobox>
+
+                        <template if:true={isPicklistField}>
+                            <lightning-combobox
+                                class="slds-m-top_small"
+                                label="Value"
+                                value={fieldValue}
+                                options={valueOptions}
+                                onchange={handleValueChange}>
+                            </lightning-combobox>
+                        </template>
+
+                        <template if:false={isPicklistField}>
+                            <lightning-input
+                                class="slds-m-top_small"
+                                label="Value"
+                                value={fieldValue}
+                                onchange={handleValueChange}>
+                            </lightning-input>
+                        </template>
+                    </div>
+
+                    <div class="slds-card__footer slds-p-around_small slds-grid slds-grid_align-end">
+                        <lightning-button
+                            label="Cancel"
+                            onclick={closeBuilder}>
+                        </lightning-button>
+
+                        <lightning-button
+                            class="slds-m-left_small"
+                            label="Save"
+                            variant="brand"
+                            onclick={handleApply}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </section>
+        </template>
+    </div>
+</template>

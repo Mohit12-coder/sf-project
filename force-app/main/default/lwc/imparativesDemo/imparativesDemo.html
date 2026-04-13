@@ -1,0 +1,19 @@
+<template>
+    <lightning-card icon-name="standard:account"  style="height : 300px;">
+      <div>
+        <lightning-datatable
+                key-field="Id"
+                data={data}
+                columns={columns}>
+            </lightning-datatable>
+      </div>
+      <br>
+        <div>
+            <lightning-button 
+              
+              label="Button Label" 
+              onclick={handleClick} 
+            ></lightning-button>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,15 @@
+<template>
+    <div class="slds-p-around_small slds-grid slds-wrap slds-grid_vertical-align-center">
+
+        <div class="slds-col slds-size_auto slds-m-right_small">
+            <lightning-button-icon icon-name="utility:rows" alternative-text="Toggle Filters" onclick={handleToggle}> </lightning-button-icon>
+        </div>
+
+        <div class="slds-m-around_small">
+            <div style="width: 260px;">
+                <lightning-input type="search" label="Search" variant="label-hidden" placeholder="Search Name or Stage" value={searchText} onchange={handleSearch}> </lightning-input>
+            </div>
+        </div>
+
+    </div>
+</template>

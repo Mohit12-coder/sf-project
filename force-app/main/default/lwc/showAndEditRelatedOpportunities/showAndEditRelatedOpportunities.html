@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Latest 5 Accounts">
+        <template if:true={accounts}>
+            <ul class="slds-p-around_medium">
+                <template for:each={accounts} for:item="acc" >
+                    <li key={acc.Id} class="slds-p-vertical_x-small">
+                        <a href="javascript:void(0);" 
+                           data-id={acc.Id} 
+                           onclick={navigateToRecord}>
+                            <strong>{acc.Name}</strong>
+                        </a>
+
+                        <lightning-button 
+                            label={acc.buttonLabel}
+                            data-id={acc.Id}
+                            onclick={toggleOpportunities}
+                            class="slds-m-top_small">
+                        </lightning-button>
+                    </li>
+                </template>
+            </ul>
+        </template>
+
+        <template if:true={error}>
+            <div class="slds-p-around_medium">
+                Error loading accounts
+            </div>
+        </template>
+    </lightning-card>
+</template>

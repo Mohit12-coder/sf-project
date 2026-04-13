@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-card slds-p-around_medium">
+        <lightning-button
+            variant="brand"
+            label={buttonLabel}
+            title={buttonLabel}
+            onclick={handleToggle}>
+        </lightning-button>
+
+        <template if:true={showCard}>
+           
+                
+                <div >
+                    <p>This is the card content. Click the button again to hide.</p>
+                </div>
+           
+        </template>
+    </div>
+</template>

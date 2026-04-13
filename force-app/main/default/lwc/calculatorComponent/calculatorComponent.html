@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Calculator">
+        <div>
+            <lightning-input label="Enter Expression" value={expression} onchange={handleChange}></lightning-input>
+
+            <lightning-button label="Calculate" onclick={handleCalculate} ></lightning-button>
+
+            <h1>Result : {result}</h1>
+        </div>
+    </lightning-card>
+</template>

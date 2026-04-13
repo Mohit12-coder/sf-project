@@ -1,0 +1,10 @@
+<template>
+    <lightning-card>
+        <div >
+            <c-child-component onsend={storeMessage}  ></c-child-component>
+        </div>
+    </lightning-card>
+    <lightning-card title="Latest Message From Child Component">
+        <p>{childMessage}</p>
+    </lightning-card>
+</template>

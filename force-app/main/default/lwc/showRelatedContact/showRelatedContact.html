@@ -1,0 +1,17 @@
+<template>
+    
+    <template if:true={isEligibleAccount}>
+        <template for:each={contacts} for:item=con>
+            <div key={con.Id}>
+                <p><strong>Name : </strong>{con.Name}</p>
+                <p><strong>Email : </strong>{con.Email}</p>
+                <p><strong>Phone : </strong>{con.Phone}</p>
+            </div>
+        </template>
+    </template>
+
+    <template  if:false={isEligibleAccount}>
+        <p>Account does not meet</p>
+    </template>
+
+</template>

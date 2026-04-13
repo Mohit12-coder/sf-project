@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Create Account">
+
+        <div class="slds-p-around_medium">
+
+            <!-- <lightning-input label="Account Id" name="Id" value={Id} disabled ></lightning-input> -->
+
+            <lightning-input label="Account Name" name="name"  onchange={handleChange}> </lightning-input>
+
+            <lightning-input label="Phone"  name="phone"  onchange={handleChange}>  </lightning-input>
+
+            <lightning-input label="Industry" name="industry"  onchange={handleChange}> </lightning-input>
+
+            <br/>
+
+            <lightning-button  label="Create Account"  variant="brand" onclick={createAccount}> </lightning-button>
+        </div>
+
+    </lightning-card>
+</template>

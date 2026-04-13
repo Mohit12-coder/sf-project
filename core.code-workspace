@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "c:/Users/ca/vscode/MyProject"
+    }
+  ],
+  "settings": {
+    "eslint.workingDirectories": [
+      "c:/Users/ca/vscode/MyProject"
+    ],
+    "eslint.validate": [
+      "javascript",
+      "typescript"
+    ],
+    "eslint.options": {
+      "overrideConfigFile": "c:\\Users\\ca\\vscode\\MyProject\\.eslintrc.json"
+    }
+  }
+}

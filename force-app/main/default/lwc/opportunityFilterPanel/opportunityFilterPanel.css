@@ -1,0 +1,52 @@
+.filter-shell {
+    position: relative;
+}
+
+.builder-backdrop {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 900;
+}
+
+.builder-popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 430px;
+    z-index: 1000;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.filter-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    border: 1px solid #d8dde6;
+    border-radius: 10px;
+    background: #fdf7e8;
+}
+
+.filter-card__text {
+    min-width: 0;
+}
+
+.filter-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.filter-subtitle {
+    font-size: 0.85rem;
+    margin-top: 2px;
+}
+
+.remove-btn {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px;
+}

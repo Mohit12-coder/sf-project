@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-m-around_small">
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+
+        <c-custom-opportunity-datatable key-field="Id" data={records} columns={columns} draft-values={draftValues} onsave={handleSave} hide-checkbox-column> </c-custom-opportunity-datatable>
+
+        <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+
+            <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious}> </lightning-button>
+
+            <div class="slds-text-title_bold">
+                Page {pageNumber} of {totalPages}
+            </div>
+
+            <lightning-button label="Next" onclick={handleNext} disabled={disableNext}> </lightning-button>
+
+        </div>
+    </div>
+</template>
