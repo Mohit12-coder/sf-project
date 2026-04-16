@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="USD Against All Currencies">
+        <div class="slds-p-around_small">
+            <lightning-input type="search" label="Search Currency" value={searchKey} onchange={handleSearch}></lightning-input>
+
+
+            <template if:true={isLoading}>
+                <div class="slds-m-top_medium">
+                    <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:false={isLoading}>
+                <div class="slds-m-top_medium">
+                    <lightning-datatable
+                        key-field="currencyCode"
+                        data={paginatedRows}
+                        columns={columns}
+                        hide-checkbox-column>
+                    </lightning-datatable>
+                </div>
+
+                <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+                    <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious}></lightning-button>
+                    <div class="slds-text-title_bold">
+                        {pageInfo}
+                    </div>
+                    <lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
