@@ -1,0 +1,27 @@
+<template>
+    <nav class="navbar">
+
+        <div class="nav-left">
+
+            <div class="logo-section" onclick={goHome}>
+                <span class="logo">🏢</span>
+                <span class="brand">Customer Portal</span>
+            </div>
+
+            <button class="menu-toggle" onclick={toggleMenu}>
+                ☰
+            </button>
+
+            <div class={menuClass}>
+                <a onclick={goHome}>Home</a>
+                <a onclick={goAssets}>My Assets</a>
+                <a onclick={goCases}>My Cases</a>
+                <a onclick={goFaq}>FAQ</a>
+                <a onclick={goRegister}>Register</a>
+                <a onclick={goLogin}>Login</a>
+            </div>
+
+        </div>
+
+    </nav>
+</template>

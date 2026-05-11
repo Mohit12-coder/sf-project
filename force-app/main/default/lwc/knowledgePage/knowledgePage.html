@@ -1,0 +1,31 @@
+<template>
+    <div class="page-wrapper">
+
+        <div class="hero">
+            <h1>Knowledge Center</h1>
+            <p>Helpful articles and guides</p>
+        </div>
+
+        <template if:true={articles.length}>
+            <div class="grid">
+
+                <template for:each={articles} for:item="item">
+
+                    <div class="card" key={item.Id}>
+                        <h2>{item.Title}</h2>
+                        <p>{item.Summary}</p>
+                    </div>
+
+                </template>
+
+            </div>
+        </template>
+
+        <template if:false={articles.length}>
+            <div class="empty-state">
+                No articles found.
+            </div>
+        </template>
+
+    </div>
+</template>

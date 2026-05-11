@@ -1,0 +1,11 @@
+.lookup-container {
+    position: relative;
+}
+
+.dropdown-box {
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    background: white;
+    max-height: 250px;
+    overflow-y: auto;
+}

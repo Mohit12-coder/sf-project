@@ -1,0 +1,48 @@
+<template>
+    <div class="page-wrapper">
+
+        <div class="hero">
+            <h1>Help Center</h1>
+            <p>Find answers to common questions</p>
+        </div>
+
+        <template if:true={articles.length}>
+
+            <div class="faq-card">
+
+                <lightning-accordion allow-multiple-sections-open>
+
+                    <template for:each={articles} for:item="item">
+
+                        <lightning-accordion-section
+                            key={item.Id}
+                            name={item.Id}
+                            label={item.Title}>
+
+                            <div class="answer">
+                                {item.Summary}
+                            </div>
+
+                        </lightning-accordion-section>
+
+                    </template>
+
+                </lightning-accordion>
+
+            </div>
+
+        </template>
+
+        <template if:false={articles.length}>
+            <div class="empty-state">
+                No FAQs available.
+            </div>
+        </template>
+        
+        <div class="help-box">
+            <p>Still need help?</p>
+            <button onclick={goToAssets}>Raise a Case</button>
+        </div>
+
+    </div>
+</template>

@@ -1,0 +1,57 @@
+<template>
+
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large">
+
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <lightning-button-icon icon-name="utility:close" alternative-text="Close" class="slds-modal__close" onclick={handleClose}></lightning-button-icon>
+
+                <h2 class="slds-text-heading_medium"> All Related Cases & Tasks </h2>
+            </header>
+
+            <div class="slds-modal__content slds-p-around_medium">
+
+                <lightning-accordion allow-multiple-sections-open>
+
+                    <template for:each={groupedRecords} for:item="record">
+
+                        <lightning-accordion-section key={record.contactId} name={record.contactId} label={record.contactName}>
+
+                            <div class="slds-m-bottom_large">
+                                <h3 class="slds-text-heading_small slds-m-bottom_small"> Cases ({record.casesList.length}) </h3>
+
+                                <template if:true={record.casesList.length}>
+                                    <lightning-datatable key-field="Id" data={record.casesList} columns={caseColumns} hide-checkbox-column></lightning-datatable>
+                                </template>
+
+                                <template if:false={record.casesList.length}>
+                                    <div class="slds-text-color_weak"> No Cases Found </div>
+                                </template>
+                            </div>
+
+                            <div>
+                                <h3 class="slds-text-heading_small slds-m-bottom_small"> Tasks ({record.tasksList.length}) </h3>
+
+                                <template if:true={record.tasksList.length}>
+                                    <lightning-datatable key-field="taskId" data={record.tasksList} columns={taskColumns} hide-checkbox-column></lightning-datatable>
+                                </template>
+
+                                <template if:false={record.tasksList.length}>
+                                    <div class="slds-text-color_weak"> No Tasks Found </div>
+                                </template>
+                            </div>
+                        </lightning-accordion-section>
+                    </template>
+                </lightning-accordion>
+            </div>
+
+            <footer class="slds-modal__footer">
+                <lightning-button label="Close" onclick={handleClose}></lightning-button>
+            </footer>
+
+        </div>
+    </section>
+    
+    <div class="slds-backdrop slds-backdrop_open"></div>
+
+</template>

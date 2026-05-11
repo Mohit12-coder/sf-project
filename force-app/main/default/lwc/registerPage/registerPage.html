@@ -1,0 +1,43 @@
+<template>
+    <div class="page-wrapper">
+
+        <div class="container">
+
+            <h2>Create Account</h2>
+
+            <lightning-input label="Name" onchange={handleName}></lightning-input>
+
+            <lightning-input label="Email" onchange={handleEmail}></lightning-input>
+
+            <lightning-input 
+                type="password" 
+                label="Password" 
+                onchange={handlePassword}
+                message-when-pattern-mismatch="Password must contain uppercase, number and special character"
+                pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[\W]).{8,}$">
+            </lightning-input>
+
+            <p class="hint">
+                Password must include:
+                • 8+ characters  
+                • 1 uppercase  
+                • 1 number  
+                • 1 special character  
+            </p>
+
+            <lightning-button label="Send OTP" onclick={sendOtp}></lightning-button>
+
+            <template if:true={showOtp}>
+                <div class="template-otp">
+
+                    <lightning-input label="Enter OTP" onchange={handleOtp}></lightning-input>
+
+                    <lightning-button variant="brand" label="Verify & Register" onclick={register}> </lightning-button>
+
+                </div>
+            </template>
+
+        </div>
+
+    </div>
+</template>

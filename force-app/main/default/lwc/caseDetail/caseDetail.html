@@ -1,0 +1,63 @@
+<template>
+
+    
+
+    <div class="page-wrapper">
+        
+        <div class="header">
+            <button class="back-btn" onclick={goToMyCases}> ← Back to My Cases</button>
+        </div>
+        
+        <template if:true={caseData}>
+
+            <div class="case-card">
+
+                <h1>Case #{caseData.CaseNumber}</h1>
+
+                <p class="subject">{caseData.Subject}</p>
+
+                <div class="status">
+                    Status: {caseData.Status}
+                </div>
+                <div class="timeline">
+
+                    <h3 class="timeline-title">Case Progress</h3>
+
+                    <template for:each={timelineSteps} for:item="step">
+
+                        <div key={step.label} class={step.cssClass}>
+
+                            <div class="circle"></div>
+
+                            <div class="content">
+                                <p class="title">{step.label}</p>
+                            </div>
+
+                        </div>
+
+                    </template>
+
+                </div>
+
+                <div class="meta">
+                    Priority: {caseData.Priority}
+                </div>
+
+                <div class="meta">
+                    Created: {caseData.CreatedDate}
+                </div>
+
+                <div class="meta">
+                    Last Update: {caseData.LastModifiedDate}
+                </div>
+
+                <div class="description">
+                    {caseData.Description}
+                </div>
+
+            </div>
+
+        </template>
+
+    </div>
+</template>

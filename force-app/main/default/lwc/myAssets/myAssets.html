@@ -1,0 +1,250 @@
+<template>
+    <div class="page-wrapper">
+
+        <lightning-tabset variant="scoped" active-tab-value="products">
+            <lightning-tab label="Products" value="products">
+                <template if:true={products.length}>
+                    <template if:false={isMobile}>
+                        <div class="table-card">
+                            <table class="asset-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Warranty End</th>
+                                        <th>Purchase Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <template for:each={products} for:item="item">
+                                        <tr key={item.Id}>
+                                            <td>{item.productName}</td>
+                                            <td>₹ {item.Price}</td>
+                                            <td>{item.Warranty_End_Date__c}</td>
+                                            <td>{item.PurchaseDate}</td>
+                                            <td>
+                                                <span class="status-badge" style={item.statusStyle}> {item.statusLabel}</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <template if:false={item.showButton}>
+                                                        <button class="case-btn" data-id={item.Id} onclick={openCaseModal}>Open Case</button>
+                                                    </template>
+                                                    <template if:true={item.showButton}>
+                                                        <button class="action-btn" data-id={item.Id} onclick={openWarrantyModal}>Extend Warranty</button>
+                                                    </template>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </template>
+
+                    <template if:true={isMobile}>
+                        <div class="mobile-list">
+                            <template for:each={products} for:item="item">
+                                <div class="asset-card" key={item.Id}>
+                                    <div class="top-row">
+                                        <strong>{item.productName}</strong>
+                                        <span class="status-badge" style={item.statusStyle}>{item.statusLabel}</span>
+                                    </div>
+
+                                    <div class="meta">₹ {item.Price}</div>
+                                    <div class="meta">Warranty: {item.Warranty_End_Date__c}</div>
+                                    <div class="meta">Purchased: {item.PurchaseDate}</div>
+
+                                    <div class="btn-group mobile-btns">
+                                        <template if:false={item.showButton}>
+                                            <button class="case-btn full-btn" data-id={item.Id} onclick={openCaseModal}>Open Case</button>
+                                        </template>
+                                        <template if:true={item.showButton}>
+                                            <button class="action-btn full-btn" data-id={item.Id} onclick={openWarrantyModal}>Extend Warranty</button>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                </template>
+            </lightning-tab>
+
+            <lightning-tab label="Services" value="services">
+
+                <template if:true={services.length}>
+
+                    <template if:false={isMobile}>
+                        <div class="table-card">
+                            <table class="asset-table">
+                                <thead>
+                                    <tr>
+                                        <th>Service</th>
+                                        <th>Price</th>
+                                        <th>Active Until</th>
+                                        <th>Purchase Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <template for:each={services} for:item="item">
+                                        <tr key={item.Id}>
+                                            <td>{item.productName}</td>
+                                            <td>₹ {item.Price}</td>
+                                            <td>{item.Active_Until__c}</td>
+                                            <td>{item.PurchaseDate}</td>
+                                            <td>
+                                                <span class="status-badge" style={item.statusStyle}>{item.statusLabel}</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <template if:false={item.showButton}>
+                                                        <button class="case-btn" data-id={item.Id} onclick={openCaseModal}>Open Case</button>
+                                                    </template>
+                                                    <template if:true={item.showButton}>
+                                                        <button class="action-btn" data-id={item.Id} onclick={openServiceModal}>Activate Service</button>
+                                                    </template>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </template>
+
+                    <template if:true={isMobile}>
+                        <div class="mobile-list">
+                            <template for:each={services} for:item="item">
+                                <div class="asset-card" key={item.Id}>
+                                    <div class="top-row">
+                                        <strong>{item.productName}</strong>
+                                        <span class="status-badge" style={item.statusStyle}>{item.statusLabel}</span>
+                                    </div>
+
+                                    <div class="meta">₹ {item.Price}</div>
+                                    <div class="meta">Active Until: {item.Active_Until__c}</div>
+                                    <div class="meta">Purchased: {item.PurchaseDate}</div>
+
+                                    <div class="btn-group mobile-btns">
+                                        <template if:false={item.showButton}>
+                                            <button class="case-btn full-btn" data-id={item.Id} onclick={openCaseModal}>Open Case</button>
+                                        </template>
+                                        <template if:true={item.showButton}>
+                                            <button class="action-btn full-btn" data-id={item.Id} onclick={openServiceModal}>Activate Service</button>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                </template>
+            </lightning-tab>
+        </lightning-tabset>
+    </div>
+
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium"> Create Case</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+
+                    <lightning-input label="Subject" onchange={handleSubject}></lightning-input>
+
+                    <lightning-textarea label="Description" class="slds-m-top_small" onchange={handleDescription}> </lightning-textarea>
+
+                    <lightning-combobox label="Priority" class="slds-m-top_small" value={priority} options={priorityOptions} onchange={handlePriority}></lightning-combobox>
+
+                </div>
+
+                <footer class="slds-modal__footer">
+
+                    <lightning-button label="Cancel" onclick={closeModal}></lightning-button>
+
+                    <lightning-button variant="brand" label="Save" class="slds-m-left_small" onclick={saveCase}> </lightning-button>
+
+                </footer>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={showSuccessModal}>
+        <section
+            role="dialog"
+            tabindex="-1"
+            aria-modal="true"
+            class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container success-modal">
+
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">
+                        🎉 Case Created Successfully
+                    </h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium success-body">
+
+                    <p>Your support request has been created successfully.</p>
+
+                    <p class="case-no">
+                        Case Number: <strong>{createdCaseNumber}</strong>
+                    </p>
+
+                </div>
+
+                <footer class="slds-modal__footer">
+
+                    <lightning-button label="Close" onclick={closeSuccessModal}></lightning-button>
+
+                    <lightning-button variant="brand" label="Go to My Cases" class="slds-m-left_small" onclick={goToMyCases}></lightning-button>
+
+                </footer>
+
+            </div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={showPlanModal}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">
+                        {isServiceFlow ? 'Activate Service Plan' : 'Extend Warranty'}
+                    </h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-radio-group label="Select Plan" options={plans} value={selectedMonths} onchange={handlePlanChange}></lightning-radio-group>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closePlanModal}></lightning-button>
+                    <lightning-button variant="brand" label="Confirm" onclick={confirmPlan}></lightning-button>
+                </footer>
+
+            </div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+</template>

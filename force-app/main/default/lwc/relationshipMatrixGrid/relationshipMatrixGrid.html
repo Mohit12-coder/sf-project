@@ -1,0 +1,103 @@
+<template>
+    <lightning-card title="Matrix Records">
+            <div class="slds-p-around_small">
+                <template if:true={isLoading}>
+                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                </template>
+
+                <template if:false={isLoading}>
+
+                    <template if:true={rows.length}>
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                                <tr>
+                                     <th class="sticky-col" scope="col">Contact \ User</th>
+                                    <template for:each={columns} for:item="col">
+                                        <th key={col.userId} scope="col">
+                                            <div class="cell-header">{col.userName}</div>
+                                        </th>
+                                    </template>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={rows} for:item="row">
+                                    <tr key={row.contactId}>
+                                        <th class="sticky-col" scope="row">
+                                            <div class="cell-header">{row.contactName}</div>
+                                        </th>
+
+                                        <template for:each={row.cells} for:item="cell">
+                                            <td key={cell.key} class="cell-td">
+                                                <template if:true={cell.recordId}>
+                                                    <template if:true={cell.recordId}>
+                                                        <button class="cell-btn" data-id={cell.recordId} onclick={handleCellClick} title="Edit Record">
+                                                             <img src={cell.iconUrl} class="health-icon" alt={cell.health} style="width: 20px;">
+                                                        </button>
+                                                    </template>
+
+                                                    <template if:false={cell.recordId}>
+                                                        <span class="empty-cell">—</span>
+                                                    </template>
+                                                </template>
+                                                <template if:false={cell.recordId}>
+                                                    <span class="empty-cell">—</span>
+                                                </template>
+                                            </td>
+                                        </template>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+
+                    <template if:false={rows.length}>
+                        <div class="slds-text-color_weak">No Relationship_Matrix__c records found for this Account.</div>
+
+                    </template>
+                </template>
+            </div>
+    </lightning-card>
+
+    <template if:true={showModal}>
+        <section role="dialog"
+                tabindex="-1"
+                class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container">
+
+                <!-- Header -->
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">
+                        Edit Matrix Record
+                    </h2>
+                </header>
+
+                <!-- Body -->
+                <div class="slds-modal__content slds-p-around_medium">
+
+                    <lightning-record-edit-form
+                        object-api-name="Relationship_Matrix__c"
+                        record-id={selectedRecordId}
+                        onsuccess={handleSuccess}>
+
+                        <lightning-messages></lightning-messages>
+
+                        <lightning-input-field field-name="Contact__c"> </lightning-input-field>
+
+                        <lightning-input-field field-name="User__c"></lightning-input-field>
+
+                        <lightning-input-field field-name="Health__c"></lightning-input-field>
+
+                        <div class="slds-m-top_medium slds-text-align_right">
+
+                            <lightning-button label="Cancel" onclick={closeModal}></lightning-button>
+                            <lightning-button class="slds-m-left_small" type="submit" variant="brand" label="Save"></lightning-button>
+
+                        </div>
+                    </lightning-record-edit-form>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

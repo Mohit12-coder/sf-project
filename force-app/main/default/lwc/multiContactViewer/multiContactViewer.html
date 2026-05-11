@@ -1,0 +1,30 @@
+<template>
+    <lightning-card
+        title="Multi Contact Related Records Viewer">
+        <div class="slds-p-around_medium">
+
+            <c-contact-lookup selected-contacts={selectedContacts} oncontactselection={handleContactSelection}> </c-contact-lookup>
+
+            <div class="slds-m-top_medium">
+                <c-selected-contact-pills contacts={selectedContacts} onremovecontact={handleRemoveContact}></c-selected-contact-pills>
+            </div>
+
+            <template if:true={isLoading}>
+                <div class="slds-m-top_large">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={showRecordsSection}>
+                <div class="slds-m-top_large">
+                    <c-records-accordion cases-list={casesList} tasks-list={tasksList} onopenfullscreen={handleOpenFullscreen}></c-records-accordion>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+
+    <template if:true={isModalOpen}>
+        <c-full-screen-modal grouped-records={groupedRecords} onclosemodal={handleCloseModal}></c-full-screen-modal>
+    </template>
+</template>

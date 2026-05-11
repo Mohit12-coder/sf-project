@@ -1,0 +1,77 @@
+.page-wrapper {
+    padding: 20px;
+    padding-top: 80px; 
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fbff, #eef4ff);
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 32px;
+    color: #0176d3;
+    font-weight: 800;
+}
+
+.hero p {
+    color: #64748b;
+}
+
+/* FAQ CARD */
+.faq-card {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* ANSWER */
+.answer {
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* EMPTY */
+.empty-state {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* HELP BOX */
+.help-box {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.help-box p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.help-box button {
+    background: #0176d3;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.help-box button:hover {
+    background: #025aa5;
+}
+
+@media (max-width: 768px) {
+    .page-wrapper {
+        padding-top: 75px;
+    }
+}

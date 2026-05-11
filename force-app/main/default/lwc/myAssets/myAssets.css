@@ -1,0 +1,119 @@
+.page-wrapper {
+    padding: 18px;
+    padding-top: 80px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fbff, #eef4ff);
+}
+
+.table-card,
+.asset-card {
+    background: white;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.table-card {
+    overflow-x: auto;
+}
+
+.asset-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.asset-table th,
+.asset-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eef2f6;
+    text-align: left;
+}
+
+.asset-table th {
+    background: #f4f8fc;
+}
+
+.mobile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.meta {
+    margin-top: 8px;
+    color: #475569;
+    font-size: 14px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.btn-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.action-btn,
+.case-btn {
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.action-btn {
+    background: #0176d3;
+}
+
+.case-btn {
+    background: #16a34a;
+}
+
+.full-btn {
+    width: 100%;
+}
+
+.success-modal {
+    max-width: 32rem !important;
+}
+
+.success-body {
+    text-align: center;
+    font-size: 15px;
+}
+
+.case-no {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #0176d3;
+}
+
+.slds-modal__container {
+    max-width: 32rem !important;
+}
+
+.slds-radio {
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.slds-radio:hover {
+    background: #f4f8fc;
+}

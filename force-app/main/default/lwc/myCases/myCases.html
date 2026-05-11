@@ -1,0 +1,75 @@
+<template>
+    <div class="page-wrapper">
+
+        <div class="hero">
+            <h1>My Cases</h1>
+            <p>Track your support requests anytime.</p>
+        </div>
+
+        <template if:true={cases.length}>
+            <template if:false={isMobile}>
+                <div class="table-card">
+                    <table class="case-table">
+                        <thead>
+                            <tr>
+                                <th>Case #</th>
+                                <th>Subject</th>
+                                <th>Asset</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={cases} for:item="item">
+                                <tr key={item.Id}>
+                                    <td>{item.CaseNumber}</td>
+                                    <td>{item.Subject}</td>
+                                    <td>{item.assetName}</td>
+                                    <td>{item.Priority}</td>
+                                    <td>
+                                        <span class="status-pill" style={item.statusStyle}>{item.Status} </span>
+                                    </td>
+                                    <td>{item.CreatedDate}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+
+                </div>
+            </template>
+
+            <template if:true={isMobile}>
+                <div class="mobile-list">
+                    <template for:each={cases} for:item="item">
+                        <div class="case-card" key={item.Id}>
+                            <div class="top-row">
+                                <strong>#{item.CaseNumber}</strong>
+                                <span class="status-pill" style={item.statusStyle}>
+                                    {item.Status}
+                                </span>
+                            </div>
+                            <div class="subject">{item.Subject}</div>
+                            <div class="meta">
+                                <span>📦 {item.assetName}</span>
+                            </div>
+                            <div class="meta">
+                                <span>⚡ {item.Priority}</span>
+                            </div>
+                            <div class="meta">
+                                <span>📅 {item.CreatedDate}</span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <template if:false={cases.length}>
+            <div class="empty-state">
+                No cases found.
+            </div>
+        </template>
+
+    </div>
+</template>

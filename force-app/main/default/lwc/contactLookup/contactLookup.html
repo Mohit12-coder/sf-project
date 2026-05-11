@@ -1,0 +1,17 @@
+<template>
+    <div class="lookup-container">
+
+        <lightning-input type="search" label="Search Contacts" placeholder="Search by Name or Mobile" onchange={handleSearch}></lightning-input>
+
+        <template if:true={showDropdown}>
+            <div class="dropdown-box slds-box slds-m-top_x-small">
+                <template for:each={processedSearchResults} for:item="contact">
+                    <div key={contact.contactId} class="slds-p-around_x-small">
+                        <lightning-input type="checkbox" label={contact.contactName} data-id={contact.contactId} checked={contact.isSelected} onchange={handleCheckboxChange}></lightning-input>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+    </div>
+</template>
